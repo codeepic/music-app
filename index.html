@@ -6,19 +6,39 @@
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/bootstrap.css">
-  <link rel="stylesheet" href="css/appliction.css">
+  <link rel="stylesheet" href="css/application.css">
 </head>
 <body>
   
-  Hello
+
 
   <script type="text/x-handlebars">
-  <ul>
-  {{#each App.Songs}}
-    <li>{{title}} by {{artist}} {{rating}}</li>
-  {{/each}}
-  </ul>
+    <div class="container">
+      <div class="page-header">
+        <h1>Rock and Roll<small> with Ember</small></h1>
+      </div><!-- page-header ends-->
+      <div class="row">
+        <div class="col-md-4" >
+          <div class="list-group">
+          {{#each App.Artists}}
+            <a href="#" class="list-group-item">{{name}}</a>
+          {{/each}}
+          </div><!-- list-group ends-->
+        </div><!-- col-md-4 ends-->
+        <div class="col-md-8">
+          <div class="list-group">
+            <div class="list-group-item empty-list">
+              <div class="empty-message">
+                Select an artist.
+              </div><!-- empty message ends-->
+            </div><!-- list-item ends-->
+          </div><!-- list-group-item ends-->
+        </div><!-- col-md-8 ends-->
+      </div><!-- row ends-->
+    </div><!-- container ends -->
+
   </script>
+
 
   
   <script src="js/libs/jquery-1.10.2.js"></script>
