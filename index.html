@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Music Collections</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/appliction.css">
+</head>
+<body>
+  
+  Hello
+
+  <script type="text/x-handlebars">
+  <ul>
+  {{#each App.Songs}}
+    <li>{{title}} by {{artist}} {{rating}}</li>
+  {{/each}}
+  </ul>
+  </script>
+
+  
+  <script src="js/libs/jquery-1.10.2.js"></script>
+  <script src="js/libs/handlebars-1.1.2.js"></script>
+  <script src="js/libs/ember-1.4.0.js"></script>
+  <script src="js/libs/bootstrap.js"></script>
+  <script src="js/app.js"></script>
+  <!-- to activate the test runner, add the "?test" query string parameter -->
+  <!--<script src="tests/runner.js"></script>-->
+</body>
+</html>
