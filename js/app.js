@@ -1,7 +1,15 @@
 App = Ember.Application.create();
 
 App.Artist = Ember.Object.extend({
-	name: null
+	name: null,
+
+	slug: function(){
+		return this.get("name").dasherize();
+	}.property("name"),
+
+	songs: function(){
+		return App.Songs.filterProperty("artist", this.get("name"));
+	}.property("name", "App.Songs.@each.artist")
 });
 
 App.Song = Ember.Object.extend({
@@ -49,11 +57,22 @@ App.alwaysWaiting = App.Song.create({title: "Always Waiting", artist: "Kaya Proj
 
 //defining routes
 App.Router.map(function(){
-	this.route("artists", {path: "/artists"});
+	this.resource("artists", function(){
+		this.route("songs", {path: ":slug"});
+	});
 });
+// App.Router.map(function(){
+// 	this.route("artists");
+// });
 
 App.ArtistsRoute = Ember.Route.extend({
 	model: function(){
 		return App.Artists;
+	}
+});
+
+App.ArtistsSongsRoute = Ember.Route.extend({
+	model: function(params){
+		return App.Artists.findProperty("slug", params.slug);
 	}
 });

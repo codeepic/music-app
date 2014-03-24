@@ -21,6 +21,20 @@
     </div><!-- container ends -->
   </script>
 
+  <script type="text/x-handlebars" data-template-name="index">
+  <div class="col-md-6">
+    <h2>Mozart</h2>
+    {{#link-to 'artists'}}See artists{{/link-to}}
+
+  </div>
+  </script>
+
+  <!-- <div class="list-group-item empty-list">
+    <div class="empty-message">
+      Select an artist.
+    </div>empty message ends
+  </div>list-item ends -->
+
   <script type="text/x-handlebars" data-template-name="artists">
     <div class="col-md-4" >
       <div class="list-group">
@@ -31,13 +45,15 @@
     </div><!-- col-md-4 ends-->
     <div class="col-md-8">
       <div class="list-group">
-        <div class="list-group-item empty-list">
-          <div class="empty-message">
-            Select an artist.
-          </div><!-- empty message ends-->
-        </div><!-- list-item ends-->
+        {{outlet}}
       </div><!-- list-group-item ends-->
     </div><!-- col-md-8 ends-->
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="artists/songs">
+  {{#each songs}}
+    <a href="#" class="list-group-item">{{title}}</a>
+  {{/each}}
   </script>
 
 
