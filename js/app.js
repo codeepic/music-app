@@ -47,3 +47,13 @@ App.alwaysWaiting = App.Song.create({title: "Always Waiting", artist: "Kaya Proj
 
 
 
+//defining routes
+App.Router.map(function(){
+	this.route("artists", {path: "/artists"});
+});
+
+App.ArtistsRoute = Ember.Route.extend({
+	model: function(){
+		return App.Artists;
+	}
+});
