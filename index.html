@@ -13,7 +13,9 @@
   <script type="text/x-handlebars">
     <div class="container">
       <div class="page-header">
-        <h1>Rock and Roll<small> with Ember</small></h1>
+        {{#link-to "index"}}
+          <h1>Rock and Roll<small> with Ember</small></h1>
+        {{/link-to}}
       </div><!-- page-header ends-->
       <div class="row">
         {{outlet}}

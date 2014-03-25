@@ -65,6 +65,12 @@ App.Router.map(function(){
 // 	this.route("artists");
 // });
 
+App.IndexRoute = Ember.Route.extend({
+	beforeModel: function(){
+		this.transitionTo("artists");
+	}
+});
+
 App.ArtistsRoute = Ember.Route.extend({
 	model: function(){
 		return App.Artists;
