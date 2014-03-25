@@ -31,27 +31,27 @@ App.SongCollection = Ember.ArrayProxy.extend(Ember.SortableMixin, {
 
 App.Songs = App.SongCollection.create();
 //Pearl Jam songs
-App.Songs.pushObject(App.Song.create({title: "Yellow Ledbetter", artist: "Pearl Jam", rating: 10}));
-App.Songs.pushObject(App.Song.create({title: "Animal", artist: "Pearl Jam", rating: 8}));
-App.Songs.pushObject(App.Song.create({title: "Daughter", artist: "Pearl Jam", rating: 7}));
-App.Songs.pushObject(App.Song.create({title: "State of Love and Truth", artist: "Pearl Jam", rating: 9}));
-App.Songs.pushObject(App.Song.create({title: "Immortality", artist: "Pearl Jam", rating: 6}));
-App.Songs.pushObject(App.Song.create({title: "Alive", artist: "Pearl Jam", rating: 8}));
-App.Songs.pushObject(App.Song.create({title: "Given to Fly", artist: "Pearl Jam", rating: 9}));
-App.Songs.pushObject(App.Song.create({title: "Inside Job", artist: "Pearl Jam", rating: 4}));
+App.Songs.pushObject(App.Song.create({title: "Yellow Ledbetter", artist: "Pearl Jam", rating: 5}));
+App.Songs.pushObject(App.Song.create({title: "Animal", artist: "Pearl Jam", rating: 4}));
+App.Songs.pushObject(App.Song.create({title: "Daughter", artist: "Pearl Jam", rating: 3}));
+App.Songs.pushObject(App.Song.create({title: "State of Love and Truth", artist: "Pearl Jam", rating: 4}));
+App.Songs.pushObject(App.Song.create({title: "Immortality", artist: "Pearl Jam", rating: 3}));
+App.Songs.pushObject(App.Song.create({title: "Alive", artist: "Pearl Jam", rating: 4}));
+App.Songs.pushObject(App.Song.create({title: "Given to Fly", artist: "Pearl Jam", rating: 5}));
+App.Songs.pushObject(App.Song.create({title: "Inside Job", artist: "Pearl Jam", rating: 2}));
 
 //Led Zeppelin songs
-App.Songs.pushObject(App.Song.create({title: "Black Dog", artist: "Led Zeppelin", rating: 8}));
-App.Songs.pushObject(App.Song.create({title: "Achilles Last Stand", artist: "Led Zeppelin", rating: 7}));
-App.Songs.pushObject(App.Song.create({title: "Immigrant Song", artist: "Led Zeppelin", rating: 6}));
-App.Songs.pushObject(App.Song.create({title: "Mole Lotto Song", artist: "Led Zeppelin", rating: 4}));
+App.Songs.pushObject(App.Song.create({title: "Black Dog", artist: "Led Zeppelin", rating: 4}));
+App.Songs.pushObject(App.Song.create({title: "Achilles Last Stand", artist: "Led Zeppelin", rating: 4}));
+App.Songs.pushObject(App.Song.create({title: "Immigrant Song", artist: "Led Zeppelin", rating: 3}));
+App.Songs.pushObject(App.Song.create({title: "Mole Lotto Song", artist: "Led Zeppelin", rating: 2}));
 
 
 //Foo Fighters songs
-App.Songs.pushObject(App.Song.create({title: "The Pretender", artist: "Foo Fighters", rating: 6}));
-App.Songs.pushObject(App.Song.create({title: "Best of you", artist: "Foo Fighters", rating: 9}));
+App.Songs.pushObject(App.Song.create({title: "The Pretender", artist: "Foo Fighters", rating: 3}));
+App.Songs.pushObject(App.Song.create({title: "Best of you", artist: "Foo Fighters", rating: 5}));
 
-App.alwaysWaiting = App.Song.create({title: "Always Waiting", artist: "Kaya Project", rating: 9});
+App.alwaysWaiting = App.Song.create({title: "Always Waiting", artist: "Kaya Project", rating: 5});
 
 
 
@@ -99,5 +99,30 @@ App.ArtistsSongsRoute = Ember.Route.extend({
 			App.Songs.pushObject(song);
 			this.get("controller").set("newSong", "");
 		}
+	}
+});
+
+App.StarRating = Ember.View.extend({
+	templateName: "star-rating",
+	classNames: ["rating-panel"],
+
+	rating: Ember.computed.alias("context.rating"),
+	fullStars: Ember.computed.alias("rating"),
+	numStars: Ember.computed.alias("maxRating"),
+
+	stars: function(){
+		var ratings = [];
+		var fullStars = this.starRange(1, this.get("fullStars"), "full");
+		var emptyStars = this.starRange(this.get("fullStars") + 1, this.get("numStars"), "empty");
+		Array.prototype.push.apply(ratings, fullStars);
+		Array.prototype.push.apply(ratings, emptyStars);
+		return ratings;
+	}.property("fullStars","numStars"),
+	starRange: function(start, end, type){
+		var starsData = [];
+		for(i = start; i <= end; i++){
+			starsData.push({rating: i, full: type === "full"});
+		}
+		return starsData;
 	}
 });
