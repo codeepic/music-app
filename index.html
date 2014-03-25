@@ -43,7 +43,18 @@
 
   <script type="text/x-handlebars" data-template-name="artists">
     <div class="col-md-4" >
+
       <div class="list-group">
+        <div class="list-group-item">
+          <div class="row">
+            <div class="col-md-9">
+            {{ input type="text" class="new-artist" placeholder="New Artist" value=newArtist }}
+            </div>
+            <div class="col-md-3">
+            <button class="btn btn-primary btn-sm new-artist-button" {{action "createArtist"}}>Add</button>
+            </div>
+          </div>
+        </div>
       {{#each App.Artists}}
         {{#link-to "artists.songs" this class="list-group-item"}}
           {{name}}

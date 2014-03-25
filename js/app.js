@@ -74,7 +74,17 @@ App.IndexRoute = Ember.Route.extend({
 App.ArtistsRoute = Ember.Route.extend({
 	model: function(){
 		return App.Artists;
+	},
+	actions: {
+		createArtist: function(){
+			var name = this.get("controller").get("newArtist");
+			var artist = App.Artist.create({name: name});
+			App.Artists.pushObject(artist);
+			//remove the value fro mthe text field
+			this.get("controller").set("newArtist", "");
+		}
 	}
+
 });
 
 App.ArtistsSongsRoute = Ember.Route.extend({
