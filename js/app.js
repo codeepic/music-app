@@ -83,6 +83,7 @@ App.ArtistsRoute = Ember.Route.extend({
 			App.Artists.pushObject(artist);
 			//remove the value fro mthe text field
 			this.get("controller").set("newArtist", "");
+			this.transitionTo("artists.songs", artist)
 		}
 	}
 
