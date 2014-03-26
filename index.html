@@ -51,7 +51,7 @@
             {{ input type="text" class="new-artist" placeholder="New Artist" value=newArtist }}
             </div>
             <div class="col-md-3">
-            <button class="btn btn-primary btn-sm new-artist-button" {{action "createArtist"}}>Add</button>
+            <button class="btn btn-primary btn-sm new-artist-button" {{ action "createArtist" }} {{ bind-attr disabled=disabled }}>Add</button>
             </div>
           </div>
         </div>

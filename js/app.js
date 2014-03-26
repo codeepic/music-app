@@ -135,3 +135,9 @@ App.StarRating = Ember.View.extend({
 		}
 	}
 });
+
+App.ArtistsController = Ember.ArrayController.extend({
+	disabled: function(){
+		return Ember.isEmpty(this.get("newArtist"));
+	}.property("newArtist")
+});
