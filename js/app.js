@@ -141,3 +141,17 @@ App.ArtistsController = Ember.ArrayController.extend({
 		return Ember.isEmpty(this.get("newArtist"));
 	}.property("newArtist")
 });
+
+App.ArtistsSongsController = Ember.ObjectController.extend({
+	newSongPlaceholder: function(){
+		return "New " + this.get("name") + " song.";
+	}.property("name"),
+
+	canCreateSong: false,
+
+	actions: {
+		enableSongCreation: function(){
+			this.set("canCreateSong", true);
+		}
+	}
+});

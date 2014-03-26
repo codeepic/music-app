@@ -70,21 +70,27 @@
   </script>
 
   <script type="text/x-handlebars" data-template-name="artists/songs">
+  
+  {{#if canCreateSong}}
   <div class="list-group-item">
-    {{ input type="text" class="" placeholder="Add song" value=newSong }}
+    {{ input type="text" class="new-artist" placeholder=newSongPlaceholder value=newSong }}
     <button class="btn btn-primary btn-sm add-song-btn" {{ action "addSong" }}>Add</button>
   </div>
+  {{/if}}
+
   {{#each songs}}
     <div class="list-group-item">
       {{title}} {{rating}}
       {{view App.StarRating maxRating=5}}
     </div>
   {{else}}
+    {{#unless canCreateSong}}
     <div class="list-group-item empty-list">
       <div class="empty-message">
-        {{name}} has no songs.
+        {{name}} has no songs. Why don't you <a href="#" {{action enableSongCreation}}>create one?</a>
       </div>
     </div>
+    {{/unless}}
   {{/each}}
   </script>
 
