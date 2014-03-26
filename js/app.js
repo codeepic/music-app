@@ -24,10 +24,11 @@ App.Artists = artistsNames.map(function(name){
 });
 
 App.SongCollection = Ember.ArrayProxy.extend(Ember.SortableMixin, {
-	sortProperties: ["rating"],
-	sortAscending: false,
+	// sortProperties: ["rating"],
+	// sortAscending: false,
 	content: []
 });
+
 
 App.Songs = App.SongCollection.create();
 //Pearl Jam songs
@@ -118,11 +119,19 @@ App.StarRating = Ember.View.extend({
 		Array.prototype.push.apply(ratings, emptyStars);
 		return ratings;
 	}.property("fullStars","numStars"),
+
 	starRange: function(start, end, type){
 		var starsData = [];
 		for(i = start; i <= end; i++){
 			starsData.push({rating: i, full: type === "full"});
 		}
 		return starsData;
+	},
+
+	actions: {
+		setRating: function(){
+			var newRating = Ember.$(event.target).data("rating");
+			this.set("rating", newRating);
+		}
 	}
 });
